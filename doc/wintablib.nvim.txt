@@ -1,0 +1,46 @@
+*wintablib.nvim.txt*
+
+==============================================================================
+LUA-MODULE                                         *wintablib.nvim-LUA-MODULE*
+
+wintablib.tab.close_left()                        *wintablib.tab.close_left()*
+  Close all the left tabs.
+
+wintablib.tab.close_right()                      *wintablib.tab.close_right()*
+  Close all the right tabs.
+
+wintablib.tab.close()                                  *wintablib.tab.close()*
+  Close the current tab even if it is the last tab.
+
+wintablib.window.from_left_tab({open_cmd})  *wintablib.window.from_left_tab()*
+  Open the left tab active window in the current tab.
+
+  Parameters: ~
+    {open_cmd} default `vsplit`
+
+wintablib.window.from_right_tab({open_cmd})*wintablib.window.from_right_tab()*
+  Open the right tab active window in the current tab.
+
+  Parameters: ~
+    {open_cmd} default `vsplit`
+
+wintablib.window.from_alt({open_cmd})            *wintablib.window.from_alt()*
+  Open the alternative buffer in the current tab.
+
+  Parameters: ~
+    {open_cmd} default `vsplit`
+
+wintablib.window.to_left_tab()                *wintablib.window.to_left_tab()*
+  Move the current window in the left tab.
+
+wintablib.window.to_right_tab()              *wintablib.window.to_right_tab()*
+  Move the current window in the right tab.
+
+wintablib.window.duplicate_as_right_tab()*wintablib.window.duplicate_as_right_tab()*
+  Open the current window in the right tab.
+
+wintablib.window.close_floating()          *wintablib.window.close_floating()*
+  Close all the floating windows.
+
+==============================================================================
+vim:tw=78:ts=8:ft=help

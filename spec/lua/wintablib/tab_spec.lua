@@ -1,0 +1,62 @@
+local helper = require("wintablib/lib/testlib/helper")
+local wintablib = require("wintablib.tab")
+
+describe("close_left()", function()
+
+  before_each(helper.before_each)
+  after_each(helper.after_each)
+
+  it("does nothing if there is no left tab", function()
+    wintablib.close_left()
+
+    assert.tab_count(1)
+  end)
+
+  it("closes the all left tab", function()
+    vim.cmd("tabedit")
+    vim.cmd("tabedit")
+
+    wintablib.close_left()
+
+    assert.tab_count(1)
+  end)
+end)
+
+describe("close_right()", function()
+
+  before_each(helper.before_each)
+  after_each(helper.after_each)
+
+  it("does nothing if there is no right tab", function()
+    wintablib.close_right()
+
+    assert.tab_count(1)
+  end)
+
+  it("closes the all right tab", function()
+    vim.cmd("tabedit")
+    vim.cmd("tabedit")
+    vim.cmd("tabfirst")
+
+    wintablib.close_right()
+
+    assert.tab_count(1)
+  end)
+end)
+
+describe("close()", function()
+
+  before_each(helper.before_each)
+  after_each(helper.after_each)
+
+  it("closes the current tab", function()
+    vim.cmd("tabedit")
+    vim.cmd("tabedit")
+    vim.cmd("tabprevious")
+
+    wintablib.close()
+
+    assert.tab_count(2)
+    assert.tab(1)
+  end)
+end)
