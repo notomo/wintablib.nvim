@@ -172,3 +172,101 @@ describe("close_floating()", function()
     assert.window_count(2)
   end)
 end)
+
+describe("close_upside()", function()
+
+  before_each(helper.before_each)
+  after_each(helper.after_each)
+
+  it("closes all the upside windows", function()
+    vim.cmd("new")
+    vim.cmd("new")
+    vim.cmd("new")
+    vim.cmd("wincmd j")
+    vim.cmd("wincmd j")
+    local current = vim.api.nvim_get_current_win()
+    vim.cmd("wincmd j")
+    local downside = vim.api.nvim_get_current_win()
+    vim.cmd("wincmd k")
+
+    wintablib.close_upside()
+
+    assert.window_count(2)
+    assert.window(current)
+
+    vim.cmd("wincmd j")
+    assert.window(downside)
+  end)
+end)
+
+describe("close_downside()", function()
+
+  before_each(helper.before_each)
+  after_each(helper.after_each)
+
+  it("closes all the downside windows", function()
+    vim.cmd("new")
+    vim.cmd("new")
+    vim.cmd("new")
+    local upside = vim.api.nvim_get_current_win()
+    vim.cmd("wincmd j")
+    local current = vim.api.nvim_get_current_win()
+
+    wintablib.close_downside()
+
+    assert.window_count(2)
+    assert.window(current)
+
+    vim.cmd("wincmd k")
+    assert.window(upside)
+  end)
+end)
+
+describe("close_leftside()", function()
+
+  before_each(helper.before_each)
+  after_each(helper.after_each)
+
+  it("closes all the leftside windows", function()
+    vim.cmd("vnew")
+    vim.cmd("vnew")
+    vim.cmd("vnew")
+    vim.cmd("wincmd l")
+    vim.cmd("wincmd l")
+    local current = vim.api.nvim_get_current_win()
+    vim.cmd("wincmd l")
+    local rightside = vim.api.nvim_get_current_win()
+    vim.cmd("wincmd h")
+
+    wintablib.close_leftside()
+
+    assert.window_count(2)
+    assert.window(current)
+
+    vim.cmd("wincmd l")
+    assert.window(rightside)
+  end)
+end)
+
+describe("close_rightside()", function()
+
+  before_each(helper.before_each)
+  after_each(helper.after_each)
+
+  it("closes all the rightside windows", function()
+    vim.cmd("vnew")
+    vim.cmd("vnew")
+    vim.cmd("vnew")
+    local leftside = vim.api.nvim_get_current_win()
+    vim.cmd("wincmd l")
+    local current = vim.api.nvim_get_current_win()
+
+    wintablib.close_rightside()
+
+    assert.window_count(2)
+    assert.window(current)
+
+    vim.cmd("wincmd h")
+    assert.window(leftside)
+  end)
+end)

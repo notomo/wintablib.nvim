@@ -88,4 +88,43 @@ function M.close_floating()
   end
 end
 
+local close = function(direction)
+  local targets = {}
+  local count = 1
+  local before = vim.api.nvim_get_current_win()
+  while true do
+    local wincmd = count .. direction
+    local window = vim.fn.win_getid(vim.fn.winnr(wincmd))
+    if window == before then
+      break
+    end
+    table.insert(targets, window)
+    count = count + 1
+    before = window
+  end
+  for _, window in ipairs(targets) do
+    vim.api.nvim_win_close(window, false)
+  end
+end
+
+--- Close all the upside windows.
+function M.close_upside()
+  close("k")
+end
+
+--- Close all the downside windows.
+function M.close_downside()
+  close("j")
+end
+
+--- Close all the rightside windows.
+function M.close_rightside()
+  close("l")
+end
+
+--- Close all the leftside windows.
+function M.close_leftside()
+  close("h")
+end
+
 return M

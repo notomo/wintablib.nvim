@@ -45,5 +45,17 @@ duplicate_as_right_tab()           *wintablib.window.duplicate_as_right_tab()*
 close_floating()                           *wintablib.window.close_floating()*
   Close all the floating windows.
 
+close_upside()                               *wintablib.window.close_upside()*
+  Close all the upside windows.
+
+close_downside()                           *wintablib.window.close_downside()*
+  Close all the downside windows.
+
+close_rightside()                         *wintablib.window.close_rightside()*
+  Close all the rightside windows.
+
+close_leftside()                           *wintablib.window.close_leftside()*
+  Close all the leftside windows.
+
 ==============================================================================
 vim:tw=78:ts=8:ft=help
