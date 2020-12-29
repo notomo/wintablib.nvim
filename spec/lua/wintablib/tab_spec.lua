@@ -60,3 +60,15 @@ describe("close()", function()
     assert.tab(1)
   end)
 end)
+
+describe("scratch()", function()
+
+  before_each(helper.before_each)
+  after_each(helper.after_each)
+
+  it("opens a new scratch tab", function()
+    wintablib.scratch()
+
+    assert.tab_count(2)
+  end)
+end)

@@ -27,4 +27,11 @@ function M.close()
   end
 end
 
+--- Open a new scratch tab.
+function M.scratch()
+  vim.cmd("tabedit")
+  vim.bo.buftype = "nofile"
+  vim.bo.swapfile = false
+end
+
 return M

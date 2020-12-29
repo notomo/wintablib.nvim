@@ -12,6 +12,9 @@ close_right()                                    *wintablib.tab.close_right()*
 close()                                                *wintablib.tab.close()*
   Close the current tab even if it is the last tab.
 
+scratch()                                            *wintablib.tab.scratch()*
+  Open a new scratch tab.
+
 ==============================================================================
 Lua module: wintablib.window                 *wintablib.nvim-wintablib.window*
 
