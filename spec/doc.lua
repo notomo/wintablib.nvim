@@ -4,9 +4,14 @@ local gen = function()
   require("genvdoc").generate("wintablib.nvim", {
     chapters = {
       {
-        name = "LUA-MODULE",
-        filter = function(node)
-          return node.declaration ~= nil and node.declaration.module ~= nil
+        name = function(group)
+          return "Lua module: " .. group
+        end,
+        group = function(node)
+          if node.declaration == nil then
+            return nil
+          end
+          return node.declaration.module
         end,
       },
     },

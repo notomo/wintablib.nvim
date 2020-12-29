@@ -25,19 +25,19 @@ local from_tab = function(tab_num, open_cmd)
 end
 
 --- Open the left tab active window in the current tab.
---- @param default `vsplit`
+--- @param default: `vsplit`
 function M.from_left_tab(open_cmd)
   from_tab(vim.fn.tabpagenr() - 1, open_cmd)
 end
 
 --- Open the right tab active window in the current tab.
---- @param default `vsplit`
+--- @param default: `vsplit`
 function M.from_right_tab(open_cmd)
   from_tab(vim.fn.tabpagenr() + 1, open_cmd)
 end
 
 --- Open the alternative buffer in the current tab.
---- @param default `vsplit`
+--- @param default: `vsplit`
 function M.from_alt(open_cmd)
   local bufnr = vim.fn.bufnr("#")
   if bufnr == -1 then
@@ -58,12 +58,12 @@ local to_tab = function(tab_direction)
   vim.api.nvim_win_close(window, true)
 end
 
---- Move the current window in the left tab.
+--- Move the current window to the left tab.
 function M.to_left_tab()
   to_tab("-")
 end
 
---- Move the current window in the right tab.
+--- Move the current window to the right tab.
 function M.to_right_tab()
   to_tab("")
 end
