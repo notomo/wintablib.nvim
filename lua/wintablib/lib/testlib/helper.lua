@@ -37,6 +37,10 @@ asserts.create("window"):register_eq(function()
   return vim.api.nvim_get_current_win()
 end)
 
+asserts.create("cursor"):register_same(function()
+  return vim.api.nvim_win_get_cursor(0)
+end)
+
 asserts.create("exists_pattern"):register(function(self)
   return function(_, args)
     local pattern = args[1]

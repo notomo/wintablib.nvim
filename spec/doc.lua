@@ -1,5 +1,3 @@
-vim.o.runtimepath = vim.fn.getcwd() .. "," .. vim.o.runtimepath
-
 local gen = function()
   require("genvdoc").generate("wintablib.nvim", {
     chapters = {

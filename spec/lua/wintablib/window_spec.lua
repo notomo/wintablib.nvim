@@ -136,12 +136,15 @@ describe("duplicate_as_right_tab()", function()
   it("duplicates the current window in the right tab", function()
     vim.cmd("vnew")
     helper.input("target")
+    vim.cmd("normal! $")
+    local pos = vim.api.nvim_win_get_cursor(0)
 
     wintablib.duplicate_as_right_tab()
 
     assert.tab_count(2)
     assert.window_count(1)
     assert.exists_pattern("target")
+    assert.cursor(pos)
 
     vim.cmd("tabprevious")
     assert.window_count(2)

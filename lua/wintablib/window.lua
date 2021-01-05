@@ -53,8 +53,10 @@ local to_tab = function(tab_direction)
   end
   local window = vim.api.nvim_get_current_win()
   local bufnr = vim.api.nvim_get_current_buf()
+  local saved = vim.fn.winsaveview()
   vim.cmd(tab_direction .. "tabnew")
   vim.api.nvim_win_set_buf(vim.api.nvim_get_current_win(), bufnr)
+  vim.fn.winrestview(saved)
   vim.api.nvim_win_close(window, true)
 end
 
