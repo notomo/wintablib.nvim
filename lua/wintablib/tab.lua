@@ -34,4 +34,57 @@ function M.scratch()
   vim.bo.swapfile = false
 end
 
+--- Get a tabline format string.
+function M.line()
+  local tab_ids = vim.api.nvim_list_tabpages()
+  local tabnrs = vim.fn.range(1, vim.fn.tabpagenr("$"))
+  local current = vim.fn.tabpagenr()
+  local titles = vim.tbl_map(function(tabnr)
+    return M._line_sel(tabnr, tab_ids[tabnr], tabnr == current)
+  end, tabnrs)
+  return table.concat(titles, "") .. "%#TabLineFill#%T"
+end
+
+function M._line_sel(tabnr, tab_id, is_current)
+  local window = vim.api.nvim_tabpage_get_win(tab_id)
+  local bufnr = vim.api.nvim_win_get_buf(window)
+
+  local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t")
+  if name == "" then
+    name = "NONE"
+  end
+
+  local highlight = "%#TabLine#"
+  if is_current then
+    highlight = "%#TabLineSel#"
+  end
+
+  local wins = vim.api.nvim_tabpage_list_wins(tab_id)
+  local win_count = #wins
+  local count = tostring(win_count)
+
+  local mod = ""
+  if vim.bo[bufnr].modified then
+    mod = "+"
+  elseif win_count == 1 then
+    count = ""
+  else
+    local modified = vim.tbl_filter(function(win)
+      local b = vim.fn.winbufnr(win)
+      return vim.bo[b].modified
+    end, wins)
+    if #modified > 0 then
+      mod = "(+)"
+    end
+  end
+
+  local opt = count .. mod
+  local label = name
+  if opt ~= "" then
+    label = ("%s[%s]"):format(name, opt)
+  end
+
+  return ("%%%dT%s %s %%T%%#TabLineFill#"):format(tabnr, highlight, label)
+end
+
 return M

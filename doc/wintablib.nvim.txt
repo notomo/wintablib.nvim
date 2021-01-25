@@ -15,6 +15,9 @@ close()                                                *wintablib.tab.close()*
 scratch()                                            *wintablib.tab.scratch()*
   Open a new scratch tab.
 
+line()                                                  *wintablib.tab.line()*
+  Get a tabline format string.
+
 ==============================================================================
 Lua module: wintablib.window                 *wintablib.nvim-wintablib.window*
 
