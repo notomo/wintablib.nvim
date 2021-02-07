@@ -129,4 +129,23 @@ function M.close_leftside()
   close("h")
 end
 
+--- Focus on floating window.
+function M.focus_on_floating()
+  local windows = vim.tbl_map(function(id)
+    return {id = id, config = vim.api.nvim_win_get_config(id)}
+  end, vim.api.nvim_tabpage_list_wins(0))
+
+  windows = vim.tbl_filter(function(window)
+    return window.config.relative ~= "" and window.config.focusable
+  end, windows)
+
+  local window = windows[1]
+  if window then
+    local ok, err = pcall(vim.api.nvim_set_current_win, window.id)
+    if not ok and not vim.startswith(err, "Failed to switch to window") then
+      error(err)
+    end
+  end
+end
+
 return M

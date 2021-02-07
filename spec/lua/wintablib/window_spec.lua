@@ -273,3 +273,26 @@ describe("close_rightside()", function()
     assert.window(leftside)
   end)
 end)
+
+describe("focus_on_floating()", function()
+
+  before_each(helper.before_each)
+  after_each(helper.after_each)
+
+  it("can focus on floating window", function()
+    local target = vim.api.nvim_open_win(0, false, {
+      width = 10,
+      height = 10,
+      relative = "editor",
+      row = 10,
+      col = 10,
+      focusable = true,
+    })
+    vim.cmd("vsplit")
+    vim.cmd("split")
+
+    wintablib.focus_on_floating()
+
+    assert.window(target)
+  end)
+end)

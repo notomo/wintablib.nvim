@@ -63,5 +63,8 @@ close_rightside()                         *wintablib.window.close_rightside()*
 close_leftside()                           *wintablib.window.close_leftside()*
   Close all the leftside windows.
 
+focus_on_floating()                     *wintablib.window.focus_on_floating()*
+  Focus on floating window.
+
 ==============================================================================
 vim:tw=78:ts=8:ft=help
