@@ -25,19 +25,19 @@ from_left_tab({open_cmd})                   *wintablib.window.from_left_tab()*
   Open the left tab active window in the current tab.
 
   Parameters: ~
-    {open_cmd} default: `vsplit`
+    {open_cmd} (string) default = "vsplit"
 
 from_right_tab({open_cmd})                 *wintablib.window.from_right_tab()*
   Open the right tab active window in the current tab.
 
   Parameters: ~
-    {open_cmd} default: `vsplit`
+    {open_cmd} (string) default = "vsplit"
 
 from_alt({open_cmd})                             *wintablib.window.from_alt()*
   Open the alternative buffer in the current tab.
 
   Parameters: ~
-    {open_cmd} default: `vsplit`
+    {open_cmd} (string) default = "vsplit"
 
 to_left_tab()                                 *wintablib.window.to_left_tab()*
   Move the current window to the left tab.
