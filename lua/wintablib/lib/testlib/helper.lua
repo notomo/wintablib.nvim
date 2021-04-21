@@ -1,10 +1,7 @@
-local M = {}
+local plugin_name = vim.split((...):gsub("%.", "/"), "/", true)[1]
+local M = require("vusted.helper")
 
-local root, err = require("wintablib/lib/path").find_root("wintablib/*.lua")
-if err ~= nil then
-  error(err)
-end
-M.root = root
+M.root = M.find_plugin_root(plugin_name)
 
 M.before_each = function()
 end
@@ -13,6 +10,7 @@ M.after_each = function()
   vim.cmd("tabedit")
   vim.cmd("tabonly!")
   vim.cmd("silent! %bwipeout!")
+  M.cleanup_loaded_modules(plugin_name)
 end
 
 M.input = function(text)
