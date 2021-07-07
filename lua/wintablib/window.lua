@@ -8,6 +8,7 @@ local open = function(bufnr, open_cmd)
     return win ~= current
   end, vim.api.nvim_tabpage_list_wins(0))
   vim.api.nvim_win_set_buf(windows[1], bufnr)
+  return windows[1]
 end
 
 local from_tab = function(tab_num, open_cmd)
@@ -19,7 +20,13 @@ local from_tab = function(tab_num, open_cmd)
   local window = vim.api.nvim_tabpage_get_win(vim.api.nvim_list_tabpages()[tab_num])
   local bufnr = vim.api.nvim_win_get_buf(window)
 
-  open(bufnr, open_cmd)
+  local view = vim.api.nvim_win_call(window, function()
+    return vim.fn.winsaveview()
+  end)
+  local new_window = open(bufnr, open_cmd)
+  vim.api.nvim_win_call(new_window, function()
+    vim.fn.winrestview(view)
+  end)
 
   vim.cmd(tab_num .. "tabclose")
 end
