@@ -90,3 +90,48 @@ describe("line()", function()
     assert.is_same("%1T%#TabLine# tab1[2] %T%#TabLineFill#%2T%#TabLine# tab2 %T%#TabLineFill#%3T%#TabLineSel# NONE %T%#TabLineFill#%#TabLineFill#%T", line)
   end)
 end)
+
+describe("activate_left_on_closed()", function()
+
+  before_each(helper.before_each)
+  after_each(function()
+    vim.cmd("autocmd! wintablib_activate_left")
+    helper.after_each()
+  end)
+
+  it("activates left tab on tabclose", function()
+    wintablib.activate_left_on_closed()
+
+    vim.cmd("tabedit")
+    vim.cmd("tabedit")
+    vim.cmd("tabprevious")
+    vim.cmd("tabclose")
+
+    helper.wait()
+    assert.tab(1)
+  end)
+
+  it("does not activate left tab on tabonly", function()
+    wintablib.activate_left_on_closed()
+
+    vim.cmd("edit tab1")
+    vim.cmd("tabedit tab2")
+    vim.cmd("tabedit tab3")
+    vim.cmd("tabprevious")
+    vim.cmd("tabonly")
+
+    helper.wait()
+    assert.buffer_name("tab2")
+  end)
+
+  it("does nothing on the last tab closed", function()
+    wintablib.activate_left_on_closed()
+
+    vim.cmd("tabedit")
+    vim.cmd("tabclose")
+
+    helper.wait()
+    assert.tab(1)
+  end)
+
+end)

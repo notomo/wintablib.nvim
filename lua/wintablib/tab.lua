@@ -1,3 +1,5 @@
+local vim = vim
+
 local M = {}
 
 --- Close all the left tabs.
@@ -32,6 +34,33 @@ function M.scratch()
   vim.cmd("tabedit")
   vim.bo.buftype = "nofile"
   vim.bo.swapfile = false
+end
+
+--- Set autocmd to activate the left tab on TabClosed event.
+function M.activate_left_on_closed()
+  vim.cmd([[
+augroup wintablib_activate_left
+  autocmd!
+  autocmd TabClosed * lua require("wintablib.tab")._activate_left(tonumber(vim.fn.expand('<afile>')))
+augroup END
+]])
+end
+
+local timer = nil
+local ms = 2
+function M._activate_left(tab_number)
+  local current = vim.fn.tabpagenr()
+  if current ~= tab_number then
+    return
+  end
+
+  if timer == nil then
+    timer = vim.loop.new_timer()
+  end
+  timer:stop()
+  timer:start(ms, 0, vim.schedule_wrap(function()
+    vim.cmd("tabprevious")
+  end))
 end
 
 --- Get a tabline format string.

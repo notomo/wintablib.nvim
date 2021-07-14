@@ -15,6 +15,9 @@ close()                                                *wintablib.tab.close()*
 scratch()                                            *wintablib.tab.scratch()*
   Open a new scratch tab.
 
+activate_left_on_closed()            *wintablib.tab.activate_left_on_closed()*
+  Set autocmd to activate the left tab on TabClosed event.
+
 line()                                                  *wintablib.tab.line()*
   Get a tabline format string.
 

@@ -17,6 +17,12 @@ M.input = function(text)
   vim.api.nvim_put({text}, "c", true, true)
 end
 
+M.wait = function()
+  vim.wait(20, function()
+    return false
+  end)
+end
+
 local asserts = require("vusted.assert").asserts
 
 asserts.create("tab_count"):register_eq(function()
@@ -25,6 +31,10 @@ end)
 
 asserts.create("tab"):register_eq(function()
   return vim.fn.tabpagenr()
+end)
+
+asserts.create("buffer_name"):register_eq(function()
+  return vim.fn.bufname("%")
 end)
 
 asserts.create("window_count"):register_eq(function()
