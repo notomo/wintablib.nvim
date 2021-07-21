@@ -134,4 +134,16 @@ describe("activate_left_on_closed()", function()
     assert.tab(1)
   end)
 
+  it("does nothing if current tab is the first", function()
+    wintablib.activate_left_on_closed()
+
+    vim.cmd("tabedit")
+    vim.cmd("tabedit")
+    vim.cmd("tabfirst")
+    vim.cmd("tabclose")
+
+    helper.wait()
+    assert.tab(1)
+  end)
+
 end)

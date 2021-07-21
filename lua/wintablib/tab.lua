@@ -50,7 +50,7 @@ local timer = nil
 local ms = 2
 function M._activate_left(tab_number)
   local current = vim.fn.tabpagenr()
-  if current ~= tab_number then
+  if current == 1 or current ~= tab_number then
     return
   end
 
