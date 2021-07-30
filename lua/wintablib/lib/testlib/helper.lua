@@ -17,12 +17,6 @@ M.input = function(text)
   vim.api.nvim_put({text}, "c", true, true)
 end
 
-M.wait = function()
-  vim.wait(20, function()
-    return false
-  end)
-end
-
 local asserts = require("vusted.assert").asserts
 
 asserts.create("tab_count"):register_eq(function()
