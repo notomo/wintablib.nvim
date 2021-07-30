@@ -41,7 +41,7 @@ function M.activate_left_on_closed()
   vim.cmd([[
 augroup wintablib_activate_left
   autocmd!
-  autocmd TabEnter * lua require("wintablib.tab")._clear_state()
+  autocmd TabEnter * lua require("wintablib.tab")._on_enter()
   autocmd TabLeave * lua require("wintablib.tab")._on_leave()
   autocmd TabClosed * lua require("wintablib.tab")._activate_left(tonumber(vim.fn.expand('<afile>')))
 augroup END
@@ -49,7 +49,7 @@ augroup END
 end
 
 local after_tab_leave = false
-function M._clear_state()
+function M._on_enter()
   after_tab_leave = false
 end
 
@@ -62,7 +62,6 @@ function M._activate_left(tab_number)
   if after_tab_leave and current ~= 1 and current == tab_number then
     vim.cmd("tabprevious")
   end
-  M._clear_state()
 end
 
 --- Get a tabline format string.
