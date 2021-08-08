@@ -90,7 +90,10 @@ function M._line_sel(tabnr, tab_id, is_current)
   end
 
   local wins = vim.api.nvim_tabpage_list_wins(tab_id)
-  local win_count = #wins
+  local floating_wins = vim.tbl_filter(function(win)
+    return vim.api.nvim_win_get_config(win).relative ~= ""
+  end, wins)
+  local win_count = #wins - #floating_wins
   local count = tostring(win_count)
 
   local mod = ""
