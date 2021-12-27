@@ -87,7 +87,7 @@ describe("line()", function()
     vim.cmd("tabedit")
 
     local line = wintablib.line()
-    assert.is_same("%1T%#TabLine# tab1[2] %T%#TabLineFill#%2T%#TabLine# tab2 %T%#TabLineFill#%3T%#TabLineSel# NONE %T%#TabLineFill#%#TabLineFill#%T", line)
+    assert.is_same("%1T%#TabLine# tab1[2] %T%#TabLineFill#%2T%#TabLine# tab2 %T%#TabLineFill#%3T%#TabLineSel# [Scratch] %T%#TabLineFill#%#TabLineFill#%T", line)
   end)
 end)
 

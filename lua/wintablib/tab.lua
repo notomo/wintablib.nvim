@@ -81,7 +81,7 @@ function M._line_sel(tabnr, tab_id, is_current)
 
   local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t")
   if name == "" then
-    name = "NONE"
+    name = "[Scratch]"
   end
 
   local highlight = "%#TabLine#"
