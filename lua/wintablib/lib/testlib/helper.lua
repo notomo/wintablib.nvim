@@ -3,8 +3,7 @@ local M = require("vusted.helper")
 
 M.root = M.find_plugin_root(plugin_name)
 
-M.before_each = function()
-end
+M.before_each = function() end
 
 M.after_each = function()
   vim.cmd("tabedit")
@@ -14,7 +13,7 @@ M.after_each = function()
 end
 
 M.input = function(text)
-  vim.api.nvim_put({text}, "c", true, true)
+  vim.api.nvim_put({ text }, "c", true, true)
 end
 
 local asserts = require("vusted.assert").asserts

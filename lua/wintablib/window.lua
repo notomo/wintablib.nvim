@@ -86,7 +86,7 @@ end
 --- Close all the floating windows.
 function M.close_floating()
   local windows = vim.tbl_map(function(id)
-    return {id = id, config = vim.api.nvim_win_get_config(id)}
+    return { id = id, config = vim.api.nvim_win_get_config(id) }
   end, vim.api.nvim_tabpage_list_wins(0))
   windows = vim.tbl_filter(function(window)
     return window.config.relative ~= ""
@@ -139,7 +139,7 @@ end
 --- Focus on floating window.
 function M.focus_on_floating()
   local windows = vim.tbl_map(function(id)
-    return {id = id, config = vim.api.nvim_win_get_config(id)}
+    return { id = id, config = vim.api.nvim_win_get_config(id) }
   end, vim.api.nvim_tabpage_list_wins(0))
 
   windows = vim.tbl_filter(function(window)

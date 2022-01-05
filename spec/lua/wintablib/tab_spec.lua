@@ -2,7 +2,6 @@ local helper = require("wintablib/lib/testlib/helper")
 local wintablib = require("wintablib.tab")
 
 describe("close_left()", function()
-
   before_each(helper.before_each)
   after_each(helper.after_each)
 
@@ -23,7 +22,6 @@ describe("close_left()", function()
 end)
 
 describe("close_right()", function()
-
   before_each(helper.before_each)
   after_each(helper.after_each)
 
@@ -45,7 +43,6 @@ describe("close_right()", function()
 end)
 
 describe("close()", function()
-
   before_each(helper.before_each)
   after_each(helper.after_each)
 
@@ -62,7 +59,6 @@ describe("close()", function()
 end)
 
 describe("scratch()", function()
-
   before_each(helper.before_each)
   after_each(helper.after_each)
 
@@ -74,7 +70,6 @@ describe("scratch()", function()
 end)
 
 describe("line()", function()
-
   before_each(helper.before_each)
   after_each(helper.after_each)
 
@@ -87,12 +82,14 @@ describe("line()", function()
     vim.cmd("tabedit")
 
     local line = wintablib.line()
-    assert.is_same("%1T%#TabLine# tab1[2] %T%#TabLineFill#%2T%#TabLine# tab2 %T%#TabLineFill#%3T%#TabLineSel# [Scratch] %T%#TabLineFill#%#TabLineFill#%T", line)
+    assert.is_same(
+      "%1T%#TabLine# tab1[2] %T%#TabLineFill#%2T%#TabLine# tab2 %T%#TabLineFill#%3T%#TabLineSel# [Scratch] %T%#TabLineFill#%#TabLineFill#%T",
+      line
+    )
   end)
 end)
 
 describe("activate_left_on_closed()", function()
-
   before_each(helper.before_each)
   after_each(function()
     vim.cmd("autocmd! wintablib_activate_left")
@@ -151,5 +148,4 @@ describe("activate_left_on_closed()", function()
 
     assert.tab(2)
   end)
-
 end)

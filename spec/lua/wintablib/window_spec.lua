@@ -2,7 +2,6 @@ local helper = require("wintablib/lib/testlib/helper")
 local wintablib = require("wintablib.window")
 
 describe("from_left_tab()", function()
-
   before_each(helper.before_each)
   after_each(helper.after_each)
 
@@ -29,7 +28,6 @@ describe("from_left_tab()", function()
 end)
 
 describe("from_right_tab()", function()
-
   before_each(helper.before_each)
   after_each(helper.after_each)
 
@@ -57,7 +55,6 @@ describe("from_right_tab()", function()
 end)
 
 describe("from_alt()", function()
-
   before_each(helper.before_each)
   after_each(helper.after_each)
 
@@ -73,7 +70,6 @@ describe("from_alt()", function()
 end)
 
 describe("to_left_tab()", function()
-
   before_each(helper.before_each)
   after_each(helper.after_each)
 
@@ -101,7 +97,6 @@ describe("to_left_tab()", function()
 end)
 
 describe("to_right_tab()", function()
-
   before_each(helper.before_each)
   after_each(helper.after_each)
 
@@ -129,7 +124,6 @@ describe("to_right_tab()", function()
 end)
 
 describe("duplicate_as_right_tab()", function()
-
   before_each(helper.before_each)
   after_each(helper.after_each)
 
@@ -153,7 +147,6 @@ describe("duplicate_as_right_tab()", function()
 end)
 
 describe("close_floating()", function()
-
   before_each(helper.before_each)
   after_each(helper.after_each)
 
@@ -177,7 +170,6 @@ describe("close_floating()", function()
 end)
 
 describe("close_upside()", function()
-
   before_each(helper.before_each)
   after_each(helper.after_each)
 
@@ -203,7 +195,6 @@ describe("close_upside()", function()
 end)
 
 describe("close_downside()", function()
-
   before_each(helper.before_each)
   after_each(helper.after_each)
 
@@ -226,7 +217,6 @@ describe("close_downside()", function()
 end)
 
 describe("close_leftside()", function()
-
   before_each(helper.before_each)
   after_each(helper.after_each)
 
@@ -252,7 +242,6 @@ describe("close_leftside()", function()
 end)
 
 describe("close_rightside()", function()
-
   before_each(helper.before_each)
   after_each(helper.after_each)
 
@@ -275,7 +264,6 @@ describe("close_rightside()", function()
 end)
 
 describe("focus_on_floating()", function()
-
   before_each(helper.before_each)
   after_each(helper.after_each)
 
