@@ -64,22 +64,24 @@ function M._activate_left(tab_number)
   end
 end
 
+local api = vim.api
+local fn = vim.fn
 --- Get a tabline format string.
 function M.line()
-  local tab_ids = vim.api.nvim_list_tabpages()
-  local tabnrs = vim.fn.range(1, vim.fn.tabpagenr("$"))
-  local current = vim.fn.tabpagenr()
+  local tab_ids = api.nvim_list_tabpages()
+  local tabnrs = fn.range(1, fn.tabpagenr("$"))
+  local current = fn.tabpagenr()
   local titles = vim.tbl_map(function(tabnr)
-    return M._line_sel(tabnr, tab_ids[tabnr], tabnr == current)
+    return M._tab_one(tabnr, tab_ids[tabnr], tabnr == current)
   end, tabnrs)
   return table.concat(titles, "") .. "%#TabLineFill#%T"
 end
 
-function M._line_sel(tabnr, tab_id, is_current)
-  local window = vim.api.nvim_tabpage_get_win(tab_id)
-  local bufnr = vim.api.nvim_win_get_buf(window)
+function M._tab_one(tabnr, tab_id, is_current)
+  local window = api.nvim_tabpage_get_win(tab_id)
+  local bufnr = api.nvim_win_get_buf(window)
 
-  local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t")
+  local name = fn.fnamemodify(api.nvim_buf_get_name(bufnr), ":t")
   if name == "" then
     name = "[Scratch]"
   end
@@ -89,9 +91,9 @@ function M._line_sel(tabnr, tab_id, is_current)
     highlight = "%#TabLineSel#"
   end
 
-  local wins = vim.api.nvim_tabpage_list_wins(tab_id)
+  local wins = api.nvim_tabpage_list_wins(tab_id)
   local floating_wins = vim.tbl_filter(function(win)
-    return vim.api.nvim_win_get_config(win).relative ~= ""
+    return api.nvim_win_get_config(win).relative ~= ""
   end, wins)
   local win_count = #wins - #floating_wins
   local count = tostring(win_count)
@@ -103,7 +105,7 @@ function M._line_sel(tabnr, tab_id, is_current)
     count = ""
   else
     local modified = vim.tbl_filter(function(win)
-      local b = vim.fn.winbufnr(win)
+      local b = api.nvim_win_get_buf(win)
       return vim.bo[b].modified
     end, wins)
     if #modified > 0 then
