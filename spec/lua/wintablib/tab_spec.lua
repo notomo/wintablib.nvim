@@ -92,7 +92,7 @@ end)
 describe("activate_left_on_closed()", function()
   before_each(helper.before_each)
   after_each(function()
-    vim.cmd("autocmd! wintablib_activate_left")
+    vim.api.nvim_create_augroup("wintablib_activate_left", {}) -- clear
     helper.after_each()
   end)
 
