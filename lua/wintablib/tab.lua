@@ -58,8 +58,8 @@ function M.activate_left_on_closed()
   vim.api.nvim_create_autocmd({ "TabClosed" }, {
     group = group_name,
     pattern = { "*" },
-    callback = function()
-      local tab_number = tonumber(vim.fn.expand("<afile>"))
+    callback = function(args)
+      local tab_number = tonumber(args.file)
       local current = vim.fn.tabpagenr()
       if after_tab_leave and current ~= 1 and current == tab_number then
         vim.cmd("tabprevious")
