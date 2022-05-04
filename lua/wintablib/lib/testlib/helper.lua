@@ -1,18 +1,16 @@
 local plugin_name = vim.split((...):gsub("%.", "/"), "/", true)[1]
-local M = require("vusted.helper")
+local helper = require("vusted.helper")
 
-M.root = M.find_plugin_root(plugin_name)
+helper.root = helper.find_plugin_root(plugin_name)
 
-M.before_each = function() end
+helper.before_each = function() end
 
-M.after_each = function()
-  vim.cmd("tabedit")
-  vim.cmd("tabonly!")
-  vim.cmd("silent! %bwipeout!")
-  M.cleanup_loaded_modules(plugin_name)
+helper.after_each = function()
+  helper.cleanup()
+  helper.cleanup_loaded_modules(plugin_name)
 end
 
-M.input = function(text)
+helper.input = function(text)
   vim.api.nvim_put({ text }, "c", true, true)
 end
 
@@ -52,4 +50,4 @@ asserts.create("exists_pattern"):register(function(self)
   end
 end)
 
-return M
+return helper
