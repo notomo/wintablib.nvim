@@ -69,26 +69,6 @@ describe("scratch()", function()
   end)
 end)
 
-describe("line()", function()
-  before_each(helper.before_each)
-  after_each(helper.after_each)
-
-  it("returns for tabline format string", function()
-    vim.cmd("edit tab1")
-    vim.cmd("split")
-
-    vim.cmd("tabedit tab2")
-
-    vim.cmd("tabedit")
-
-    local line = wintablib.line()
-    assert.is_same(
-      "%1T%#TabLine# tab1[2] %T%#TabLineFill#%2T%#TabLine# tab2 %T%#TabLineFill#%3T%#TabLineSel# [Scratch] %T%#TabLineFill#%#TabLineFill#%T",
-      line
-    )
-  end)
-end)
-
 describe("activate_left_on_closed()", function()
   before_each(helper.before_each)
   after_each(function()
