@@ -28,7 +28,7 @@ local from_tab = function(tab_num, open_cmd)
     vim.fn.winrestview(view)
   end)
 
-  vim.cmd(tab_num .. "tabclose")
+  vim.cmd.tabclose({ range = { tab_num } })
 end
 
 --- Open the left tab active window in the current tab.
@@ -53,7 +53,7 @@ function M.from_alt(open_cmd)
   open(bufnr, open_cmd)
 end
 
-local to_tab = function(tab_direction)
+local to_tab = function(tab_new)
   local windows = vim.api.nvim_tabpage_list_wins(0)
   if #windows == 1 then
     return
@@ -61,7 +61,9 @@ local to_tab = function(tab_direction)
   local window = vim.api.nvim_get_current_win()
   local bufnr = vim.api.nvim_get_current_buf()
   local saved = vim.fn.winsaveview()
-  vim.cmd(tab_direction .. "tabnew")
+
+  tab_new()
+
   vim.api.nvim_win_set_buf(vim.api.nvim_get_current_win(), bufnr)
   vim.fn.winrestview(saved)
   vim.api.nvim_win_close(window, true)
@@ -69,17 +71,21 @@ end
 
 --- Move the current window to the left tab.
 function M.to_left_tab()
-  to_tab("-")
+  to_tab(function()
+    vim.cmd.tabnew({ range = { math.max(1, vim.fn.tabpagenr() - 1) } })
+  end)
 end
 
 --- Move the current window to the right tab.
 function M.to_right_tab()
-  to_tab("")
+  to_tab(function()
+    vim.cmd.tabnew()
+  end)
 end
 
 --- Open the current window in the right tab.
 function M.duplicate_as_right_tab()
-  vim.cmd("vsplit")
+  vim.cmd.vsplit()
   M.to_right_tab()
 end
 
