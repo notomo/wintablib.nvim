@@ -138,7 +138,7 @@ describe("duplicate_as_right_tab()", function()
     assert.tab_count(2)
     assert.window_count(1)
     assert.exists_pattern("target")
-    assert.cursor(pos)
+    assert.cursor_position(pos)
 
     vim.cmd.tabprevious()
     assert.window_count(2)
@@ -187,10 +187,10 @@ describe("close_upside()", function()
     wintablib.close_upside()
 
     assert.window_count(2)
-    assert.window(current)
+    assert.window_id(current)
 
     vim.cmd.wincmd("j")
-    assert.window(downside)
+    assert.window_id(downside)
   end)
 end)
 
@@ -209,10 +209,10 @@ describe("close_downside()", function()
     wintablib.close_downside()
 
     assert.window_count(2)
-    assert.window(current)
+    assert.window_id(current)
 
     vim.cmd.wincmd("k")
-    assert.window(upside)
+    assert.window_id(upside)
   end)
 end)
 
@@ -234,10 +234,10 @@ describe("close_leftside()", function()
     wintablib.close_leftside()
 
     assert.window_count(2)
-    assert.window(current)
+    assert.window_id(current)
 
     vim.cmd.wincmd("l")
-    assert.window(rightside)
+    assert.window_id(rightside)
   end)
 end)
 
@@ -256,10 +256,10 @@ describe("close_rightside()", function()
     wintablib.close_rightside()
 
     assert.window_count(2)
-    assert.window(current)
+    assert.window_id(current)
 
     vim.cmd.wincmd("h")
-    assert.window(leftside)
+    assert.window_id(leftside)
   end)
 end)
 
@@ -281,6 +281,6 @@ describe("focus_on_floating()", function()
 
     wintablib.focus_on_floating()
 
-    assert.window(target)
+    assert.window_id(target)
   end)
 end)

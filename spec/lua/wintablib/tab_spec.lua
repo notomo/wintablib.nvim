@@ -54,7 +54,7 @@ describe("close()", function()
     wintablib.close()
 
     assert.tab_count(2)
-    assert.tab(1)
+    assert.tab_number(1)
   end)
 end)
 
@@ -87,7 +87,7 @@ describe("activate_left_on_closed()", function()
     vim.cmd.tabprevious()
     vim.cmd.tabclose()
 
-    assert.tab(1)
+    assert.tab_number(1)
   end)
 
   it("does not activate left tab on tabonly", function()
@@ -99,7 +99,7 @@ describe("activate_left_on_closed()", function()
     vim.cmd.tabprevious()
     vim.cmd.tabonly()
 
-    assert.buffer_name("tab2")
+    assert.buffer_name(helper.root .. "/tab2")
   end)
 
   it("does nothing on the last tab closed", function()
@@ -108,7 +108,7 @@ describe("activate_left_on_closed()", function()
     vim.cmd.tabedit()
     vim.cmd.tabclose()
 
-    assert.tab(1)
+    assert.tab_number(1)
   end)
 
   it("does nothing if current tab is the first", function()
@@ -119,7 +119,7 @@ describe("activate_left_on_closed()", function()
     vim.cmd.tabfirst()
     vim.cmd.tabclose()
 
-    assert.tab(1)
+    assert.tab_number(1)
   end)
 
   it("does nothing if previous tab is closed", function()
@@ -129,6 +129,6 @@ describe("activate_left_on_closed()", function()
     vim.cmd.tabedit()
     vim.cmd.tabclose({ range = { vim.fn.tabpagenr() - 1 } })
 
-    assert.tab(2)
+    assert.tab_number(2)
   end)
 end)
