@@ -1,4 +1,4 @@
-local helper = require("wintablib/lib/testlib/helper")
+local helper = require("wintablib.test.helper")
 local wintablib = require("wintablib.window")
 
 describe("from_left_tab()", function()
