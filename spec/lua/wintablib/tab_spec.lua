@@ -99,7 +99,7 @@ describe("activate_left_on_closed()", function()
     vim.cmd.tabprevious()
     vim.cmd.tabonly()
 
-    assert.buffer_name(helper.root .. "/tab2")
+    assert.buffer_full_name(helper.root .. "/tab2")
   end)
 
   it("does nothing on the last tab closed", function()
