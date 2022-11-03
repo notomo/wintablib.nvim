@@ -34,6 +34,7 @@ function M.scratch()
   vim.cmd.tabedit()
   vim.bo.buftype = "nofile"
   vim.bo.swapfile = false
+  vim.bo.bufhidden = "wipe"
 end
 
 --- Set autocmd to activate the left tab on TabClosed event.
