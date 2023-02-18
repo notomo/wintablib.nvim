@@ -71,13 +71,7 @@ end)
 
 describe("activate_left_on_closed()", function()
   before_each(helper.before_each)
-  after_each(function()
-    local ok, err = pcall(vim.api.nvim_clear_autocmds, { group = "wintablib_activate_left" })
-    if not ok and not vim.startswith(err, "invalid augroup: ") then
-      error(err)
-    end
-    helper.after_each()
-  end)
+  after_each(helper.after_each)
 
   it("activates left tab on tabclose", function()
     wintablib.activate_left_on_closed()
