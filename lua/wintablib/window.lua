@@ -4,9 +4,12 @@ local open = function(bufnr, open_cmd)
   vim.cmd(open_cmd or "vsplit")
 
   local current = vim.api.nvim_get_current_win()
-  local windows = vim.tbl_filter(function(win)
-    return win ~= current
-  end, vim.api.nvim_tabpage_list_wins(0))
+  local windows = vim
+    .iter(vim.api.nvim_tabpage_list_wins(0))
+    :filter(function(win)
+      return win ~= current
+    end)
+    :totable()
   vim.api.nvim_win_set_buf(windows[1], bufnr)
   return windows[1]
 end
@@ -94,9 +97,12 @@ function M.close_floating()
   local windows = vim.tbl_map(function(id)
     return { id = id, config = vim.api.nvim_win_get_config(id) }
   end, vim.api.nvim_tabpage_list_wins(0))
-  windows = vim.tbl_filter(function(window)
-    return window.config.relative ~= ""
-  end, windows)
+  windows = vim
+    .iter(windows)
+    :filter(function(window)
+      return window.config.relative ~= ""
+    end)
+    :totable()
 
   for _, window in ipairs(windows) do
     vim.api.nvim_win_close(window.id, false)
@@ -148,9 +154,12 @@ function M.focus_on_floating()
     return { id = id, config = vim.api.nvim_win_get_config(id) }
   end, vim.api.nvim_tabpage_list_wins(0))
 
-  windows = vim.tbl_filter(function(window)
-    return window.config.relative ~= "" and window.config.focusable
-  end, windows)
+  windows = vim
+    .iter(windows)
+    :filter(function(window)
+      return window.config.relative ~= "" and window.config.focusable
+    end)
+    :totable()
 
   local window = windows[1]
   if window then
