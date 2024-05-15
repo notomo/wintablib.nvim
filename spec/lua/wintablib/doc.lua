@@ -1,3 +1,4 @@
+local util = require("genvdoc.util")
 local plugin_name = vim.env.PLUGIN_NAME
 local full_plugin_name = plugin_name .. ".nvim"
 
@@ -24,8 +25,6 @@ local gen_readme = function()
 This plugin provides neovim lua window and tab functions.
 ]]):format(full_plugin_name)
 
-  local readme = io.open("README.md", "w")
-  readme:write(content)
-  readme:close()
+  util.write("README.md", content)
 end
 gen_readme()
