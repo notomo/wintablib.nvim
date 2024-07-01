@@ -35,19 +35,19 @@ local from_tab = function(tab_num, open_cmd)
 end
 
 --- Open the left tab active window in the current tab.
---- @param open_cmd string: default = "vsplit"
+--- @param open_cmd string? default = "vsplit"
 function M.from_left_tab(open_cmd)
   from_tab(vim.fn.tabpagenr() - 1, open_cmd)
 end
 
 --- Open the right tab active window in the current tab.
---- @param open_cmd string: default = "vsplit"
+--- @param open_cmd string? default = "vsplit"
 function M.from_right_tab(open_cmd)
   from_tab(vim.fn.tabpagenr() + 1, open_cmd)
 end
 
 --- Open the alternative buffer in the current tab.
---- @param open_cmd string: default = "vsplit"
+--- @param open_cmd string? default = "vsplit"
 function M.from_alt(open_cmd)
   local bufnr = vim.fn.bufnr("#")
   if bufnr == -1 then
