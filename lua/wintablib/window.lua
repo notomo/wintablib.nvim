@@ -153,26 +153,21 @@ end
 
 --- Focus on floating window.
 function M.focus_on_floating()
-  local windows = vim
+  local window_id = vim
     .iter(vim.api.nvim_tabpage_list_wins(0))
-    :map(function(id)
-      return { id = id, config = vim.api.nvim_win_get_config(id) }
+    :filter(function(id)
+      local config = vim.api.nvim_win_get_config(id)
+      return config.relative ~= "" and config.focusable == true
     end)
-    :totable()
+    :next()
 
-  windows = vim
-    .iter(windows)
-    :filter(function(window)
-      return window.config.relative ~= "" and window.config.focusable
-    end)
-    :totable()
+  if not window_id then
+    return
+  end
 
-  local window = windows[1]
-  if window then
-    local ok, err = pcall(vim.api.nvim_set_current_win, window.id)
-    if not ok and not vim.startswith(err, "Failed to switch to window") then
-      error(err)
-    end
+  local ok, err = pcall(vim.api.nvim_set_current_win, window_id)
+  if not ok and not vim.startswith(err, "Failed to switch to window") then
+    error(err)
   end
 end
 
