@@ -38,6 +38,7 @@ function M.scratch()
 end
 
 --- Set autocmd to activate the left tab on TabClosed event.
+--- @deprecated Use 'tabclose' option.
 function M.activate_left_on_closed()
   local after_tab_leave = false
   local group_name = "wintablig_activate_left"

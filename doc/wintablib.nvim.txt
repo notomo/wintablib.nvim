@@ -17,6 +17,7 @@ scratch()                                            *wintablib.tab.scratch()*
 
 activate_left_on_closed()            *wintablib.tab.activate_left_on_closed()*
   Set autocmd to activate the left tab on TabClosed event.
+  @deprecated Use 'tabclose' option.
 
 ==============================================================================
 Lua module: wintablib.window                 *wintablib.nvim-wintablib.window*
