@@ -1,5 +1,6 @@
 local helper = require("wintablib.test.helper")
 local wintablib = require("wintablib.tab")
+local assert = require("assertlib").typed(assert)
 
 describe("close_left()", function()
   before_each(helper.before_each)
