@@ -166,7 +166,7 @@ function M.focus_on_floating()
   end
 
   local ok, err = pcall(vim.api.nvim_set_current_win, window_id)
-  if not ok and not vim.startswith(err, "Failed to switch to window") then
+  if not ok and err and not vim.startswith(err, "Failed to switch to window") then
     error(err)
   end
 end
