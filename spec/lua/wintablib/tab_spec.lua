@@ -75,6 +75,7 @@ describe("activate_left_on_closed()", function()
   after_each(helper.after_each)
 
   it("activates left tab on tabclose", function()
+    ---@diagnostic disable-next-line: deprecated
     wintablib.activate_left_on_closed()
 
     vim.cmd.tabedit()
@@ -86,6 +87,7 @@ describe("activate_left_on_closed()", function()
   end)
 
   it("does not activate left tab on tabonly", function()
+    ---@diagnostic disable-next-line: deprecated
     wintablib.activate_left_on_closed()
 
     vim.cmd.edit("tab1")
@@ -98,6 +100,7 @@ describe("activate_left_on_closed()", function()
   end)
 
   it("does nothing on the last tab closed", function()
+    ---@diagnostic disable-next-line: deprecated
     wintablib.activate_left_on_closed()
 
     vim.cmd.tabedit()
@@ -107,6 +110,7 @@ describe("activate_left_on_closed()", function()
   end)
 
   it("does nothing if current tab is the first", function()
+    ---@diagnostic disable-next-line: deprecated
     wintablib.activate_left_on_closed()
 
     vim.cmd.tabedit()
@@ -118,6 +122,7 @@ describe("activate_left_on_closed()", function()
   end)
 
   it("does nothing if previous tab is closed", function()
+    ---@diagnostic disable-next-line: deprecated
     wintablib.activate_left_on_closed()
 
     vim.cmd.tabedit()
