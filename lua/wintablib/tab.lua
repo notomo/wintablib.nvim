@@ -37,37 +37,4 @@ function M.scratch()
   vim.bo.bufhidden = "wipe"
 end
 
---- Set autocmd to activate the left tab on TabClosed event.
---- @deprecated Use 'tabclose' option.
-function M.activate_left_on_closed()
-  local after_tab_leave = false
-  local group_name = "wintablig_activate_left"
-  vim.api.nvim_create_augroup(group_name, {})
-  vim.api.nvim_create_autocmd({ "TabEnter" }, {
-    group = group_name,
-    pattern = { "*" },
-    callback = function()
-      after_tab_leave = false
-    end,
-  })
-  vim.api.nvim_create_autocmd({ "TabLeave" }, {
-    group = group_name,
-    pattern = { "*" },
-    callback = function()
-      after_tab_leave = true
-    end,
-  })
-  vim.api.nvim_create_autocmd({ "TabClosed" }, {
-    group = group_name,
-    pattern = { "*" },
-    callback = function(args)
-      local tab_number = tonumber(args.file)
-      local current = vim.fn.tabpagenr()
-      if after_tab_leave and current ~= 1 and current == tab_number then
-        vim.cmd.tabprevious()
-      end
-    end,
-  })
-end
-
 return M
