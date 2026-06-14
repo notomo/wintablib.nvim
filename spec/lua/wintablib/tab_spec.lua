@@ -1,6 +1,8 @@
+local ntf = require("ntf")
+local describe, it, before_each, after_each = ntf.describe, ntf.it, ntf.before_each, ntf.after_each
 local helper = require("wintablib.test.helper")
 local wintablib = require("wintablib.tab")
-local assert = require("assertlib").typed(assert)
+local assert = require("assertlib").typed(ntf.assert)
 
 describe("close_left()", function()
   before_each(helper.before_each)
